@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolución: La Ley de Enfriamiento de Newton</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        h2 {
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 0.5em;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #f9f9f9;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background: #eee;
+            padding: 1em;
+            border-left: 5px solid #007bff;
+            margin: 1.5em 0;
+            overflow-x: auto;
+        }
+        .image-container {
+            text-align: center;
+            margin-top: 2em;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .step {
+            margin-bottom: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Resolución de Problemas: La Ley de Enfriamiento de Newton</h1>
+    <p>Este documento explica paso a paso cómo resolver un problema de la Ley de Enfriamiento de Newton para determinar el tiempo de muerte de una persona.</p>
+
+    <hr>
+
+    <div class="step">
+        <h2>El Problema</h2>
+        <p>Un oficial de policía llega a la escena de un crimen y encuentra un cuerpo. Los siguientes datos son registrados:</p>
+        <ul>
+            <li>Temperatura normal del cuerpo: <strong>98.6°F</strong></li>
+            <li>Temperatura de la habitación: <strong>69°F</strong></li>
+            <li>Medición 1 (9:18 PM): La temperatura del cuerpo es de <strong>79.5°F</strong>.</li>
+            <li>Medición 2 (10:18 PM): Una hora después, la temperatura del cuerpo es de <strong>78.0°F</strong>.</li>
+        </ul>
+        <p>La fórmula de la Ley de Enfriamiento de Newton es:</p>
+        <div class="formula">
+            <code>T(t) = Ts + (T₀ - Ts)e⁻ᵏᵗ</code>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="step">
+        <h2>Paso 1: Encontrar la Constante de Enfriamiento (k)</h2>
+        <p>Para encontrar la constante <strong>k</strong>, usamos las dos mediciones del oficial. Establecemos la primera medición como el punto de partida (t=0) para esta parte del cálculo.</p>
+        <ul>
+            <li>T(0) = 79.5°F (a las 9:18 PM)</li>
+            <li>T(1) = 78.0°F (a las 10:18 PM)</li>
+            <li>Ts = 69°F</li>
+        </ul>
+        <p>Sustituimos estos valores en la fórmula para resolver para <strong>k</strong>:</p>
+        <div class="formula">
+            <code>78.0 = 69 + (79.5 - 69)e⁻ᵏ¹</code><br>
+            <code>9 = 10.5e⁻ᵏ</code><br>
+            <code>k = -ln(9 / 10.5) ≈ 0.1542</code>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="step">
+        <h2>Paso 2: Calcular el Tiempo de Muerte (t)</h2>
+        <p>Ahora usamos la constante <strong>k</strong> que encontramos, y la temperatura corporal normal (que es la temperatura en el momento de la muerte, nuestro T₀ final) para calcular cuánto tiempo ha transcurrido desde la muerte hasta la primera medición.</p>
+        <ul>
+            <li>T(t) = 79.5°F (temperatura a las 9:18 PM)</li>
+            <li>T₀ = 98.6°F (temperatura en el momento de la muerte)</li>
+            <li>Ts = 69°F</li>
+            <li>k ≈ 0.1542</li>
+        </ul>
+        <p>Sustituimos los valores y resolvemos para <strong>t</strong>:</p>
+        <div class="formula">
+            <code>79.5 = 69 + (98.6 - 69)e⁻⁰·¹⁵⁴²ᵗ</code><br>
+            <code>10.5 = 29.6e⁻⁰·¹⁵⁴²ᵗ</code><br>
+            <code>t = -ln(10.5 / 29.6) / 0.1542 ≈ 6.718 horas</code>
+        </div>
+        <p>Esto equivale a aproximadamente <strong>6 horas y 43 minutos</strong> (0.718 horas * 60 min/hora).</p>
+    </div>
+
+    <hr>
+
+    <div class="step">
+        <h2>Paso 3: Determinar la Hora Exacta de la Muerte</h2>
+        <p>Finalmente, restamos el tiempo transcurrido (6 horas y 43 minutos) de la hora de la primera medición (9:18 PM).</p>
+        <div class="formula">
+            <code>9:18 PM - 6 horas y 43 minutos = 2:35 PM</code>
+        </div>
+        <p><strong>Conclusión: La hora de la muerte fue aproximadamente a las 2:35 PM.</strong></p>
+    </div>
+    
+    <hr>
+
+    <div class="step">
+        <h2>Gráfica del Enfriamiento</h2>
+        <p>La siguiente gráfica muestra cómo la temperatura del cuerpo de la víctima disminuyó con el tiempo, siguiendo una curva de decaimiento exponencial desde la temperatura normal hasta la temperatura ambiente.</p>
+        <div class="image-container">
+            <img src="https://i.ibb.co/b3wJ313/grafico-enfriamiento.png" alt="Gráfica de la Ley de Enfriamiento de Newton">
+            <p><strong>Figura 1: Curva de Enfriamiento de la Ley de Newton</strong></p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

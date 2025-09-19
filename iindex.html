@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Datación por Carbono-14</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f9f9f9; }
+    h1 { color: #333; }
+    .resultado { background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    canvas { background: #fff; border-radius: 10px; padding: 10px; }
+  </style>
+</head>
+<body>
+
+  <h1>Estimación de la edad con Carbono-14</h1>
+
+  <div class="resultado">
+    <h2>Procedimiento</h2>
+    <p>La desintegración se modela con:</p>
+    <p style="font-family: monospace;">f(t) = f(0) · e^(k·t)</p>
+    <p>Sabemos que la <b>vida media</b> es 5730 años, lo que significa:</p>
+    <p style="font-family: monospace;">f(5730) = 0.5 f(0)</p>
+    <p>De aquí:</p>
+    <p style="font-family: monospace;">k = ln(0.5) / 5730</p>
+    <p>Con el dato experimental:</p>
+    <p style="font-family: monospace;">f(t)/f(0) = 0.7745 = e^(k·t)</p>
+    <p>Por tanto:</p>
+    <p style="font-family: monospace;">t = ln(0.7745) / k</p>
+  </div>
+
+  <div class="resultado">
+    <h2>Cálculos</h2>
+    <p id="constante"></p>
+    <p id="tiempo"></p>
+    <p id="tiempoRedondeado"></p>
+  </div>
+
+  <h2>Gráfico de desintegración del Carbono-14</h2>
+  <canvas id="grafico" width="800" height="400"></canvas>
+
+  <a href="./index2.html" class="styled-button" target="_blank">
+    Ir al ejercicio 2!!
+  </a>
+
+
+  <script>
+    // Datos
+    const halfLife = 5730;
+    const ratio = 0.7745;
+
+    // Constante k
+    const k = Math.log(0.5) / halfLife;
+
+    // Edad calculada
+    const t = Math.log(ratio) / k;
+
+    // Mostrar resultados
+    document.getElementById("constante").innerHTML = `Constante k = ${k.toExponential(10)} por año`;
+    document.getElementById("tiempo").innerHTML = `Edad (sin redondear) = ${t.toFixed(2)} años`;
+    document.getElementById("tiempoRedondeado").innerHTML = `Edad redondeada al año más cercano = <b>${Math.round(t)} años</b>`;
+
+    // Datos para el gráfico
+    const años = [];
+    const valores = [];
+    for (let i = 0; i <= 10000; i += 500) {
+      años.push(i);
+      valores.push(Math.exp(k * i));
+    }
+
+    // Gráfico con Chart.js
+    const ctx = document.getElementById("grafico").getContext("2d");
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: años,
+        datasets: [
+          {
+            label: "f(t)/f(0)",
+            data: valores,
+            borderColor: "blue",
+            fill: false,
+            tension: 0.1
+          },
+          {
+            label: "Muestra (77.45%)",
+            data: años.map(x => (x === Math.round(t) ? 0.7745 : null)),
+            borderColor: "red",
+            pointBackgroundColor: "red",
+            pointRadius: 6,
+            showLine: false
+          }
+        ]
+      },
+      options: {
+        scales: {
+          x: { title: { display: true, text: "Tiempo (años)" } },
+          y: { title: { display: true, text: "f(t)/f(0)" }, min: 0, max: 1 }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
